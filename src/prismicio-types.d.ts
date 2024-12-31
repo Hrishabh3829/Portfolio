@@ -4,109 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type BlogpostDocumentDataSlicesSlice = ImageBlockSlice | RichTextSlice;
-
-/**
- * Content for BlogPost documents
- */
-interface BlogpostDocumentData {
-	/**
-	 * Title field in *BlogPost*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blogpost.title
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	title: prismic.KeyTextField;
-
-	/**
-	 * Date field in *BlogPost*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blogpost.date
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#date
-	 */
-	date: prismic.DateField;
-
-	/**
-	 * Hover Image field in *BlogPost*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blogpost.hover_image
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	hover_image: prismic.ImageField<never>;
-
-	/**
-	 * Slice Zone field in *BlogPost*
-	 *
-	 * - **Field Type**: Slice Zone
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blogpost.slices[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
-	 */
-	slices: prismic.SliceZone<BlogpostDocumentDataSlicesSlice> /**
-	 * Meta Title field in *BlogPost*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
-	 * - **API ID Path**: blogpost.meta_title
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
-	meta_title: prismic.KeyTextField;
-
-	/**
-	 * Meta Description field in *BlogPost*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A brief summary of the page
-	 * - **API ID Path**: blogpost.meta_description
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField;
-
-	/**
-	 * Meta Image field in *BlogPost*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blogpost.meta_image
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	meta_image: prismic.ImageField<never>;
-}
-
-/**
- * BlogPost document from Prismic
- *
- * - **API ID**: `blogpost`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type BlogpostDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
-	Simplify<BlogpostDocumentData>,
-	'blogpost',
-	Lang
->;
-
-type PageDocumentDataSlicesSlice =
-	| ContentindexSlice
-	| ExperienceSlice
-	| TechListSlice
-	| BiographySlice
-	| HeroSlice;
+type PageDocumentDataSlicesSlice = ExperienceSlice | TechListSlice | BiographySlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -178,103 +76,6 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
 	Simplify<PageDocumentData>,
 	'page',
-	Lang
->;
-
-type ProjectDocumentDataSlicesSlice = RichTextSlice | ImageBlockSlice;
-
-/**
- * Content for Project documents
- */
-interface ProjectDocumentData {
-	/**
-	 * Title field in *Project*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: project.title
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	title: prismic.KeyTextField;
-
-	/**
-	 * Date field in *Project*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: project.date
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#date
-	 */
-	date: prismic.DateField;
-
-	/**
-	 * Hover Image field in *Project*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: project.hover_image
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	hover_image: prismic.ImageField<never>;
-
-	/**
-	 * Slice Zone field in *Project*
-	 *
-	 * - **Field Type**: Slice Zone
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: project.slices[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
-	 */
-	slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
-	 * Meta Title field in *Project*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
-	 * - **API ID Path**: project.meta_title
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
-	meta_title: prismic.KeyTextField;
-
-	/**
-	 * Meta Description field in *Project*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A brief summary of the page
-	 * - **API ID Path**: project.meta_description
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField;
-
-	/**
-	 * Meta Image field in *Project*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: project.meta_image
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Project document from Prismic
- *
- * - **API ID**: `project`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ProjectDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
-	Simplify<ProjectDocumentData>,
-	'project',
 	Lang
 >;
 
@@ -431,7 +232,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = BlogpostDocument | PageDocument | ProjectDocument | SettingsDocument;
+export type AllDocumentTypes = PageDocument | SettingsDocument;
 
 /**
  * Primary content in *Biography → Default → Primary*
@@ -514,88 +315,6 @@ type BiographySliceVariation = BiographySliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
-
-/**
- * Primary content in *ContentIndex → Default → Primary*
- */
-export interface ContentindexSliceDefaultPrimary {
-	/**
-	 * Heading field in *ContentIndex → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contentindex.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	heading: prismic.KeyTextField;
-
-	/**
-	 * Content Type field in *ContentIndex → Default → Primary*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contentindex.default.primary.content_type
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	content_type: prismic.SelectField<'Blog' | 'Project'>;
-
-	/**
-	 * Description field in *ContentIndex → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contentindex.default.primary.description
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	description: prismic.RichTextField;
-
-	/**
-	 * View More Text field in *ContentIndex → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contentindex.default.primary.view_more_text
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	view_more_text: prismic.KeyTextField;
-
-	/**
-	 * Fallback Item Image field in *ContentIndex → Default → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contentindex.default.primary.fallback_item_image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	fallback_item_image: prismic.ImageField<never>;
-}
-
-/**
- * Default variation for ContentIndex Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ContentindexSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<ContentindexSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *ContentIndex*
- */
-type ContentindexSliceVariation = ContentindexSliceDefault;
-
-/**
- * ContentIndex Shared Slice
- *
- * - **API ID**: `contentindex`
- * - **Description**: Contentindex
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ContentindexSlice = prismic.SharedSlice<'contentindex', ContentindexSliceVariation>;
 
 /**
  * Item in *Experience → Default → Primary → item*
@@ -757,90 +476,6 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 /**
- * Primary content in *ImageBlock → Default → Primary*
- */
-export interface ImageBlockSliceDefaultPrimary {
-	/**
-	 * image field in *ImageBlock → Default → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_block.default.primary.image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	image: prismic.ImageField<never>;
-}
-
-/**
- * Default variation for ImageBlock Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ImageBlockSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<ImageBlockSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *ImageBlock*
- */
-type ImageBlockSliceVariation = ImageBlockSliceDefault;
-
-/**
- * ImageBlock Shared Slice
- *
- * - **API ID**: `image_block`
- * - **Description**: ImageBlock
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ImageBlockSlice = prismic.SharedSlice<'image_block', ImageBlockSliceVariation>;
-
-/**
- * Primary content in *RichText1 → Default → Primary*
- */
-export interface RichTextSliceDefaultPrimary {
-	/**
-	 * Content field in *RichText1 → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: rich_text.default.primary.conte
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	conte: prismic.RichTextField;
-}
-
-/**
- * Default variation for RichText1 Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<RichTextSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *RichText1*
- */
-type RichTextSliceVariation = RichTextSliceDefault;
-
-/**
- * RichText1 Shared Slice
- *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
-
-/**
  * Item in *TechList → Default → Primary → item*
  */
 export interface TechListSliceDefaultPrimaryItemItem {
@@ -938,15 +573,9 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
-			BlogpostDocument,
-			BlogpostDocumentData,
-			BlogpostDocumentDataSlicesSlice,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
-			ProjectDocument,
-			ProjectDocumentData,
-			ProjectDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavItemItem,
@@ -955,10 +584,6 @@ declare module '@prismicio/client' {
 			BiographySliceDefaultPrimary,
 			BiographySliceVariation,
 			BiographySliceDefault,
-			ContentindexSlice,
-			ContentindexSliceDefaultPrimary,
-			ContentindexSliceVariation,
-			ContentindexSliceDefault,
 			ExperienceSlice,
 			ExperienceSliceDefaultPrimaryItemItem,
 			ExperienceSliceDefaultPrimary,
@@ -968,14 +593,6 @@ declare module '@prismicio/client' {
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
-			ImageBlockSlice,
-			ImageBlockSliceDefaultPrimary,
-			ImageBlockSliceVariation,
-			ImageBlockSliceDefault,
-			RichTextSlice,
-			RichTextSliceDefaultPrimary,
-			RichTextSliceVariation,
-			RichTextSliceDefault,
 			TechListSlice,
 			TechListSliceDefaultPrimaryItemItem,
 			TechListSliceDefaultPrimary,
